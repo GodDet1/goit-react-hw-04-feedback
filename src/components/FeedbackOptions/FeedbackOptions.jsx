@@ -3,6 +3,8 @@ import { BtnContainer, MyBtn } from './styled';
 import PropTypes from 'prop-types';
 
 function FeedbackOptions({ data, onLeaveFeedback }) {
+  console.log(data);
+
   const btnsName = Object.keys(data);
 
   return (
@@ -12,7 +14,7 @@ function FeedbackOptions({ data, onLeaveFeedback }) {
           key={btnsName.indexOf(name)}
           type="button"
           name={name}
-          onClick={onLeaveFeedback}
+          onClick={() => onLeaveFeedback(name)}
         >
           {name}
         </MyBtn>
@@ -22,12 +24,12 @@ function FeedbackOptions({ data, onLeaveFeedback }) {
 }
 
 FeedbackOptions.propTypes = {
-  onLeaveFeedback: PropTypes.func.isRequired,
   data: PropTypes.shape({
     good: PropTypes.number.isRequired,
-    bad: PropTypes.number.isRequired,
     neutral: PropTypes.number.isRequired,
-  }).isRequired,
+    bad: PropTypes.number.isRequired,
+  }),
+  onLeaveFeedback: PropTypes.func.isRequired,
 };
 
 export default FeedbackOptions;
